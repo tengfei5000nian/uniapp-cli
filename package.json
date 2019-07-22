@@ -29,9 +29,17 @@
     "@dcloudio/uni-mp-qq": "*",
     "@dcloudio/uni-mp-toutiao": "*",
     "@dcloudio/uni-mp-weixin": "*",
+    "@feathersjs/authentication-client": "^1.0.11",
+    "@feathersjs/feathers": "^3.3.1",
+    "@feathersjs/socketio-client": "^1.2.1",
+    "animate.css": "^3.7.2",
+    "crypto-js": "^3.1.9-1",
+    "echarts": "^4.2.1",
     "flyio": "^0.6.2",
     "mqtt": "^3.0.0",
     "regenerator-runtime": "^0.12.1",
+    "socket.io-client": "^2.2.0",
+    "uniapp-ws": "https://gitee.com/aimodudao/uniapp-ws.git",
     "vue": "^2.6.10",
     "vuex": "^3.0.1"
   },
@@ -48,7 +56,10 @@
     "@vue/cli-plugin-babel": "3.5.1",
     "@vue/cli-service": "^3.9.0",
     "babel-plugin-import": "^1.11.0",
+    "node-sass": "^4.12.0",
     "postcss-comment": "^2.0.0",
+    "sass-loader": "^7.1.0",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.10"
   },
   "browserslist": [

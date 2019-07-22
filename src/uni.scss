@@ -74,3 +74,160 @@ $uni-color-subtitle: #555555; // 二级标题颜色
 $uni-font-size-subtitle:36upx;
 $uni-color-paragraph: #3F536E; // 文章段落颜色
 $uni-font-size-paragraph:30upx;
+
+/*------------- 我自己的全局变量、混合、方法 -------------*/
+/*----- 全局变量 -----*/
+$me-color-adjust-tolerance: 15;              // 颜色调整容差：0-255
+$me-color-adjust-filter: null;               // 颜色调整列表：color1, color2, color3, ...
+$me-color-replace: null;                     // 颜色替换列表：(replaceColor:newColor, replaceColor:newColor, ...)
+$me-page-bg-color: #F1F2F4;                  // 页面背景色
+$me-init-unit: 1upx;                         // 初始单位
+
+/*----- 混合 -----*/
+@mixin flex-align($justify: null, $align: null, $multiline: false) {
+    display: flex;
+    @if $justify != null {
+        justify-content: $justify;
+    }
+    @if $multiline == true {
+        @if $align != null {
+            align-items: $align;
+            align-content: $align;
+        }
+    } @else {
+        @if $align != null {
+            align-items: $align;
+        }
+    }
+}
+@mixin border($direction, $style: 0 none) {
+    @each $val in $direction {
+        @if $val == top {
+            border-top: $style;
+        } @else if $val == right {
+            border-right: $style;
+        } @else if $val == bottom {
+            border-bottom: $style;
+        } @else if $val == left {
+            border-left: $style;
+        }
+    }
+}
+@mixin border-radius($direction, $radius: 0) {
+    @if $direction == top {
+        border-top-right-radius: $radius;
+        border-top-left-radius: $radius;
+    } @else if $direction == right {
+        border-bottom-right-radius: $radius;
+        border-top-right-radius: $radius;
+    } @else if $direction == bottom {
+        border-bottom-right-radius: $radius;
+        border-bottom-left-radius: $radius;
+    } @else if $direction == left {
+        border-bottom-left-radius: $radius;
+        border-top-left-radius: $radius;
+    }
+}
+@mixin text-overflow($line-number: 1, $line-height: null) {
+    @if $line-number == 1 {
+        white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $line-number;
+        -webkit-box-orient: vertical;
+    }
+    @if $line-height != null {
+        max-height: $line-height * $line-number;
+    }
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@mixin size($width: null, $height: null, $widthUnit: $me-init-unit, $heightUnit: $me-init-unit) {
+    @if $width != null {
+        @if $widthUnit != null {
+            width: $width * $widthUnit;
+        } @else {
+            width: $width;
+        }
+    }
+    @if $height != null {
+        @if $heightUnit != null {
+            height: $height * $heightUnit;
+        } @else {
+            height: $height;
+        }
+    }
+}
+@mixin syxz($top: null, $right: null, $bottom: null, $left: null, $topUnit: $me-init-unit, $rightUnit: $me-init-unit, $bottomUnit: $me-init-unit, $leftUnit: $me-init-unit) {
+    @if $top != null {
+        @if $topUnit != null {
+            top: $top * $topUnit;
+        } @else {
+            top: $top;
+        }
+    }
+    @if $right != null {
+        @if $rightUnit != null {
+            right: $right * $rightUnit;
+        } @else {
+            right: $right;
+        }
+    }
+    @if $bottom != null {
+        @if $bottomUnit != null {
+            bottom: $bottom * $bottomUnit;
+        } @else {
+            bottom: $bottom;
+        }
+    }
+    @if $left != null {
+        @if $leftUnit != null {
+            left: $left * $leftUnit;
+        } @else {
+            left: $left;
+        }
+    }
+}
+@mixin font-stroke($fontSize: null, $color: null, $strokeColor: null, $strokeWidth: 1px, $strokeType: shadow) {
+    font-size: $fontSize;
+    color: $color;
+    @if $strokeType == shadow {
+        $shadow: 0 0 $strokeWidth $strokeColor;
+        text-shadow: $shadow, $shadow, $shadow, $shadow, $shadow,
+                     $shadow, $shadow, $shadow, $shadow, $shadow,
+                     $shadow, $shadow, $shadow, $shadow, $shadow,
+                     $shadow, $shadow, $shadow, $shadow, $shadow;
+    } @else {
+        font-weight: bold;
+        -webkit-text-fill-color: $color;
+        -webkit-text-stroke: $strokeWidth $strokeColor;
+    }
+}
+
+/*----- 方法 -----*/
+@function asb($val){
+    @return if($val < 0, -$val, $val);
+}
+@function c($color, $isReplace: true){
+    @if $me-color-adjust-filter != null {
+        $r: red($color);
+        $g: green($color);
+        $b: blue($color);
+        @each $val in $me-color-adjust-filter {
+            $valR: red($val);
+            $valG: green($val);
+            $valB: blue($val);
+            @if asb($r - $valR) <= $me-color-adjust-tolerance and asb($g - $valG) <= $me-color-adjust-tolerance and asb($b - $valB) <= $me-color-adjust-tolerance {
+                $color: $val;
+            }
+        }
+    }
+    @if $isReplace and $me-color-replace != null {
+        @each $key, $val in $me-color-replace {
+            @if $color == $key {
+                $color: $val;
+            }
+        }
+    }
+    @return $color;
+}

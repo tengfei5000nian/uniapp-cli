@@ -1,16 +1,109 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+    "pages": [
+        {
+            "path" : "pages/home/home",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/test/test",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/guide/guide",
+            "style" : {}
+        }
+    ],
+    "tabBar": {
+        "color": "#333333",
+        "selectedColor": "#333333",
+        "backgroundColor": "#E4E4E4",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "iconPath": "static/main/tabbar_1.png",
+                "selectedIconPath": "static/main/tabbar_1_selected.png",
+                "text": "明星占卜"
+            }
+            ,{
+                "pagePath": "pages/test/test",
+                "iconPath": "static/main/tabbar_2.png",
+                "selectedIconPath": "static/main/tabbar_2_selected.png",
+                "text": "休闲测试"
+            }
+        ]
+    },
+    "subPackages": [
+        {
+            "root": "packages/nkdm",
+            "pages": [
+                {
+                    "path": "index/index",
+                    "style": {
+                        "disableScroll": true
+                    }
+                }
+                ,{
+                    "path": "answer/index",
+                    "style": {
+                        "disableScroll": true
+                    }
+                }
+                ,{
+                    "path": "cover/index",
+                    "style": {
+                        "disableScroll": true
+                    }
+                }
+            ]
+        }
+        ,{
+            "root": "packages/gkdj",
+            "pages": [
+                {
+                    "path": "index/index",
+                    "style": {}
+                }
+                ,{
+                    "path": "test/index",
+                    "style": {}
+                }
+                ,{
+                    "path": "result/index",
+                    "style": {}
+                }
+                ,{
+                    "path": "notice/index",
+                    "style": {}
+                }
+            ]
+        }
+        ,{
+            "root": "packages/qyqx",
+            "pages": [
+                {
+                    "path": "index/index",
+                    "style": {}
+                }
+                ,{
+                    "path": "cover/index",
+                    "style": {}
+                }
+            ]
+        }
+    ],
+    "globalStyle": {
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "backgroundColor": "#fff",
+        "backgroundColorTop": "#fff",
+        "backgroundColorBottom": "#fff",
+        "mp-alipay": {
+            "allowsBounceVertic": "NO",
+            "transparentTitle": "always",
+            "titlePenetrate": "YES"
+        }
+    }
 }

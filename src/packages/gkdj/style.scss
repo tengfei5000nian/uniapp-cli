@@ -1,0 +1,67 @@
+@font-face{
+	font-family: 'SourceHanSerifCN';
+	src: url('./SourceHanSerifCN.ttf');
+	// 戏精对杠精大学
+	// 互相嫌弃大学
+	// 励志自由大学
+	// 封路维修美食大学
+	// 情商智商不如财商大学
+	// 恋与少年大学
+	// 等蛙回家大学
+	// 呼唤爱大学
+	// 争气六步走大学
+	// 又双叒叕大学
+	// 火炎焱燚大学
+	// 水沝淼㵘大学
+	// 哲理十八弯大学
+	// 人生巅峰大学
+	// 易燃易爆大学
+	// 正确脱单大学
+	// 文体分家大学
+	// 发际线管理大学
+	// 万有引力大学
+	// 上山下海大学
+	// 焊板贴膜超能大学
+	// 代码和胫骨关系大学
+	// 别人家孩子上的大学
+	// 量子供给侧大学
+	// 宇宙中心大学
+	// 学什么火什么大学
+	// ABCDEFG
+	// HIJKLMN
+	// OPQRST
+	// UVWXYZ
+}
+.gk-block{
+	$radius: 40rpx;
+	background-color: #fff;
+	&.top-radius{
+		border-top-left-radius: $radius;
+		border-top-right-radius: $radius;
+	}
+	&.bottom-radius{
+		border-bottom-left-radius: $radius;
+		border-bottom-right-radius: $radius;
+	}
+}
+.gk-style-white{
+	width: 240rpx;
+	height: 72rpx;
+	border-radius: 36rpx;
+	background-color: #fff;
+	box-shadow: 0 15rpx 30rpx 0 rgba(#6b6a6a, .2);
+	line-height: 1.2em;
+	font-weight: bold;
+	font-size: 24rpx;
+	color: #333;
+}
+.gk-style-red{
+	height: 88rpx;
+	border-radius: 44rpx;
+	background-color: #fd5c51;
+	line-height: 1.2em;
+	font-weight: bold;
+	font-size: 32rpx;
+	color: #fff;
+	box-shadow: 0 15rpx 30rpx 0 rgba(#972922, .3);
+}
