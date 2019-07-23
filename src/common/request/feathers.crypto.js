@@ -1,4 +1,4 @@
-import appConfig from '@/App.json'
+import appConfig from '@/config'
 import cryptojs from 'crypto-js'
 
 export default function(app) {

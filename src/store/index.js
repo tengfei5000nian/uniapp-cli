@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import app from '@/common/request'
-import appConfig from '@/App.json'
+import appConfig from '@/config'
 import { Router } from '@/common/uniapp.expand'
-import { promiseMerge } from '@/common/util'
-import { configMerge } from '@/common'
+import { promiseMerge, configMerge } from '@/common/util'
 import { AMap } from '@/common/amap'
 
 Vue.use(Vuex)

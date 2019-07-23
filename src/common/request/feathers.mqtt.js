@@ -1,4 +1,4 @@
-import appConfig from '@/App.json'
+import appConfig from '@/config'
 import mqtt from 'mqtt'
 
 export default function(app) {

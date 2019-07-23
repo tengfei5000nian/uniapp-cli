@@ -1,3 +1,5 @@
+import { integerFixed } from '@/common/util/value'
+
 export const dateMsec = {
     y: 365 * 24 * 60 * 60 * 1000,
     m: 30 * 24 * 60 * 60 * 1000,
@@ -6,12 +8,6 @@ export const dateMsec = {
     h: 60 * 60 * 1000,
     i: 60 * 1000,
     s: 1000
-}
-
-export function integerFixed(integer, length) {
-    const max = Math.pow(10, length)
-    integer = parseInt(integer)
-    return integer < max ? (integer / max).toFixed(length).slice(-length) : max - 1
 }
 
 export function dateObject(date, correct = true) {
@@ -102,48 +98,4 @@ export function dateMsecFormat(msec = 0, format = '{hh}:{ii}:{ss}') {
     return format.replace(/{(y|m|a|d|h|i|s|)+}/g, (result, key) => {
         return integerFixed(msecObject[key.charAt(0)], key.length)
     })
-}
-
-export function queryStringify(params, filter = []) {
-    params = JSON.parse(JSON.stringify(params))
-    const query = params.query || ''
-    filter.concat(['query']).forEach(key => {
-        if (params[key]) delete params[key]
-    })
-    return JSON.stringify(params).replace(/\"\:/g, '=').replace(/\,\"/g, '&').replace(/\"|\{|\}/g, '') + (query && Object.keys(params).length ? '&' : '') + query
-}
-
-export function queryParse(params) {
-    try {
-        return JSON.parse(('{"' + params.replace(/\=/g, '":"').replace(/\&/g, '","') + '"}').replace(/\"(true|false|null)\"/g, '$1').replace(/\"(\d|[1-9]\d+)\"/g, '$1').replace(/\,?\"[^\"]+\"\:\"(undefined)?\"\,?/g, ''))
-    } catch (error) {
-        return {}
-    }
-}
-
-export function valueRadio(value, options = [], failReturn = {}) {
-    return options.find(option => option.value === value) || (typeof failReturn === 'number' ? options[failReturn] : failReturn)
-}
-
-export function valueCheckbox(values = [], options = []) {
-    return options.filter(option => values.includes(option.value))
-}
-
-export function cloneObject(oj = {}) {
-    return JSON.parse(JSON.stringify(oj))
-}
-
-export const promiseMerge =  new class {
-    _premise = {}
-    constructor() {
-        const self = this
-        return function (key, premiseReturn) {
-            if (!self._premise[key]) self._premise[key] = premiseReturn().finally(() => {
-                delete self._premise[key]
-            })
-            return new Promise((resolve, reject) => {
-                self._premise[key].then(resolve).catch(reject)
-            })
-        }
-    }
 }

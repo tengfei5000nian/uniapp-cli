@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import appConfig from '@/App.json'
+    import appConfig from '@/config'
     
     const barHeight = (uni.getSystemInfoSync() || {}).statusBarHeight || 0
     

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import appConfig from '@/App.json'
+    import appConfig from '@/config'
     import meConfirm from '@/components/meConfirm'
     import { queryStringify } from '@/common/util'
     

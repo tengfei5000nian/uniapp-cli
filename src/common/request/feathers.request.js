@@ -1,4 +1,4 @@
-import appConfig from '@/App.json'
+import appConfig from '@/config'
 import feathers from '@feathersjs/feathers'
 import request from '@/common/request/request'
 

@@ -1,4 +1,4 @@
-import appConfig from '@/App.json'
+import appConfig from '@/config'
 import feathers from '@feathersjs/feathers'
 import socketio from '@feathersjs/socketio-client'
 import auth from '@feathersjs/authentication-client'
